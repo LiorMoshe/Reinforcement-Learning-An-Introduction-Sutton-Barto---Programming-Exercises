@@ -8,7 +8,7 @@ The tracks used are given in the book:
 
 First Track             |  Second Track
 :-------------------------:|:-------------------------:
-![](./first_track.png)  |  ![](./second_track.png)
+![](./images/first_track.png)  |  ![](./images/second_track.png)
 
 
 As we go on and increase the number of episodes which will be 
@@ -17,4 +17,4 @@ An example of the paths that our policy takes in both racetracks:
 
 First Track             |  Second Track
 :-------------------------:|:-------------------------:
-![](./first_track_path.png)  |  ![](./second_track_path.png)
+![](./images/first_track_path.png)  |  ![](./images/second_track_path.png)
