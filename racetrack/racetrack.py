@@ -30,7 +30,7 @@ FIRST_TRACK_END_LEN = 9
 # Probability of failure, meaning  the velocity increments are zero independent of the chosen action.
 PROB_FAILURE = 0.1
 
-EPSILON = 0.05
+EPSILON = 0.1
 
 MAX_VELOCITY = 5
 MIN_VELOCITY = 0
@@ -133,7 +133,6 @@ class MonteCarloRacer(object):
     def on_policy_monte_carlo(self, iters=1000):
         returns = {(state, action): [] for state in self.states for action in self.actions}
         for _ in range(iters):
-            print("Iter: ", _)
             start_state = choice(self.track.start_list) + (0, 0)
             start_action = choice(self.get_possible_actions(start_state))
             self.velocities = (0, 0)
@@ -178,7 +177,6 @@ class MonteCarloRacer(object):
         curr_state = start_state
         curr_action = start_action
         while not self.did_cross_finish_line((curr_state[0], curr_state[1])) and len(episode) < MAX_EPISODE_LENGTH:
-            # print(len(episode))
             episode.append((curr_state, curr_action))
             curr_state = self.transition((curr_state[0], curr_state[1]), curr_action)
 
@@ -194,7 +192,6 @@ class MonteCarloRacer(object):
     def draw_path(self):
         start_state = choice(self.track.start_list) + (0, 0)
         episode = self.generate_episode(start_state, get_action(self.policy, start_state, self.actions, False), False)
-        print(len(episode))
         delta = 1 / len(episode)
 
         cnt = 0
@@ -227,7 +224,6 @@ class RaceTrack(object):
 if __name__ == "__main__":
     first_track = RaceTrack(SECOND_TRACK, SECOND_TRACK_START, SECOND_TRACK_END)
     racer = MonteCarloRacer(first_track)
-    # racer.get_possible_actions((31, 8, 0, 2))
     racer.on_policy_monte_carlo(iters=10000)
     racer.draw_path()
 
